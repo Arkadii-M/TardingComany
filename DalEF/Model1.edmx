@@ -1,0 +1,727 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище TradingCompany" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserLogin" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="UserPassword" Type="binary" MaxLength="50" Nullable="false" />
+          <Property Name="Salt" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Adress">
+          <Key>
+            <PropertyRef Name="AdressID" />
+          </Key>
+          <Property Name="AdressID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryID" Type="int" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Street" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="BankID" />
+          </Key>
+          <Property Name="BankID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Swift" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BankCardInfo">
+          <Key>
+            <PropertyRef Name="BankCardInfoID" />
+          </Key>
+          <Property Name="BankCardInfoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BankID" Type="int" />
+          <Property Name="CardNumber" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="CVV" Type="int" Nullable="false" />
+          <Property Name="ExtendDate" Type="datetime2" Precision="7" Nullable="false" StoreGeneratedPattern="None" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="bigint" Nullable="false" />
+          <Property Name="ItemTitle" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CategoryID" Type="bigint" Nullable="false" />
+          <Property Name="Price" Type="numeric" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="InStock" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="bigint" Nullable="false" />
+          <Property Name="Ordernumber" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" StoreGeneratedPattern="None" />
+          <Property Name="UserID" Type="bigint" Nullable="false" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Traiding Company.dbo.Ordered" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Ordered">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="ItemID" />
+            <PropertyRef Name="Amount" />
+          </Key>
+          <Property Name="OrderID" Type="bigint" Nullable="false" />
+          <Property Name="ItemID" Type="bigint" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderStatus">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="bigint" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="MobilePhone" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="BankCardInfoID" Type="bigint" Nullable="false" />
+          <Property Name="Gender" Type="bit" Nullable="false" />
+          <Property Name="AdressID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Adress__CountryI__32E0915F">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Adress" Type="Self.Adress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Adress">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BankCardI__BankI__2B3F6F97">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="0..1" />
+          <End Role="BankCardInfo" Type="Self.BankCardInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="BankID" />
+            </Principal>
+            <Dependent Role="BankCardInfo">
+              <PropertyRef Name="BankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Item__CategoryID__3C69FB99">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__StatusID__4222D4EF">
+          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__UserID__412EB0B6">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ordered__ItemID__44FF419A">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="Ordered" Type="Self.Ordered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="Ordered">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ordered__OrderID__440B1D61">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Ordered" Type="Self.Ordered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Ordered">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserInfo__Adress__37A5467C">
+          <End Role="Adress" Type="Self.Adress" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adress">
+              <PropertyRef Name="AdressID" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="AdressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserInfo__BankCa__36B12243">
+          <End Role="BankCardInfo" Type="Self.BankCardInfo" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankCardInfo">
+              <PropertyRef Name="BankCardInfoID" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="BankCardInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserInfo__UserID__35BCFE0A">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище TradingCompanyContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Adress" EntityType="Self.Adress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bank" EntityType="Self.Bank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BankCardInfo" EntityType="Self.BankCardInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ordered" EntityType="Self.Ordered" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Ordered].[OrderID] AS [OrderID], 
+    [Ordered].[ItemID] AS [ItemID], 
+    [Ordered].[Amount] AS [Amount]
+    FROM [dbo].[Ordered] AS [Ordered]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Adress__CountryI__32E0915F" Association="Self.FK__Adress__CountryI__32E0915F">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Adress" EntitySet="Adress" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BankCardI__BankI__2B3F6F97" Association="Self.FK__BankCardI__BankI__2B3F6F97">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="BankCardInfo" EntitySet="BankCardInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Item__CategoryID__3C69FB99" Association="Self.FK__Item__CategoryID__3C69FB99">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__StatusID__4222D4EF" Association="Self.FK__Order__StatusID__4222D4EF">
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__UserID__412EB0B6" Association="Self.FK__Order__UserID__412EB0B6">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ordered__ItemID__44FF419A" Association="Self.FK__Ordered__ItemID__44FF419A">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Ordered" EntitySet="Ordered" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ordered__OrderID__440B1D61" Association="Self.FK__Ordered__OrderID__440B1D61">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Ordered" EntitySet="Ordered" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserInfo__Adress__37A5467C" Association="Self.FK__UserInfo__Adress__37A5467C">
+            <End Role="Adress" EntitySet="Adress" />
+            <End Role="UserInfo" EntitySet="UserInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserInfo__BankCa__36B12243" Association="Self.FK__UserInfo__BankCa__36B12243">
+            <End Role="BankCardInfo" EntitySet="BankCardInfo" />
+            <End Role="UserInfo" EntitySet="UserInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserInfo__UserID__35BCFE0A" Association="Self.FK__UserInfo__UserID__35BCFE0A">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="UserInfo" EntitySet="UserInfo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TradingCompany" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserLogin" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserPassword" Type="Binary" MaxLength="50" FixedLength="true" Nullable="false" />
+          <Property Name="Salt" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK__Order__UserID__412EB0B6" FromRole="Account" ToRole="Order" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK__UserInfo__UserID__35BCFE0A" FromRole="Account" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="Adress">
+          <Key>
+            <PropertyRef Name="AdressID" />
+          </Key>
+          <Property Name="AdressID" Type="Int64" Nullable="false" />
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Country" Relationship="Self.FK__Adress__CountryI__32E0915F" FromRole="Adress" ToRole="Country" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK__UserInfo__Adress__37A5467C" FromRole="Adress" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="BankID" />
+          </Key>
+          <Property Name="BankID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Swift" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BankCardInfo" Relationship="Self.FK__BankCardI__BankI__2B3F6F97" FromRole="Bank" ToRole="BankCardInfo" />
+        </EntityType>
+        <EntityType Name="BankCardInfo">
+          <Key>
+            <PropertyRef Name="BankCardInfoID" />
+          </Key>
+          <Property Name="BankCardInfoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BankID" Type="Int32" />
+          <Property Name="CardNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CVV" Type="Int32" Nullable="false" />
+          <Property Name="ExtendDate" Type="DateTime" annotation:StoreGeneratedPattern="None" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Bank" Relationship="Self.FK__BankCardI__BankI__2B3F6F97" FromRole="BankCardInfo" ToRole="Bank" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK__UserInfo__BankCa__36B12243" FromRole="BankCardInfo" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="Self.FK__Item__CategoryID__3C69FB99" FromRole="Category" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Adress" Relationship="Self.FK__Adress__CountryI__32E0915F" FromRole="Country" ToRole="Adress" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int64" Nullable="false" />
+          <Property Name="ItemTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CategoryID" Type="Int64" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="InStock" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__Item__CategoryID__3C69FB99" FromRole="Item" ToRole="Category" />
+          <NavigationProperty Name="Ordered" Relationship="Self.FK__Ordered__ItemID__44FF419A" FromRole="Item" ToRole="Ordered" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int64" Nullable="false" />
+          <Property Name="Ordernumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="None" Precision="7" />
+          <Property Name="UserID" Type="Int64" Nullable="false" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Account" Relationship="Self.FK__Order__UserID__412EB0B6" FromRole="Order" ToRole="Account" />
+          <NavigationProperty Name="OrderStatus" Relationship="Self.FK__Order__StatusID__4222D4EF" FromRole="Order" ToRole="OrderStatus" />
+          <NavigationProperty Name="Ordered" Relationship="Self.FK__Ordered__OrderID__440B1D61" FromRole="Order" ToRole="Ordered" />
+        </EntityType>
+        <EntityType Name="OrderStatus">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK__Order__StatusID__4222D4EF" FromRole="OrderStatus" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MobilePhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BankCardInfoID" Type="Int64" Nullable="false" />
+          <Property Name="Gender" Type="Boolean" Nullable="false" />
+          <Property Name="AdressID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="Self.FK__UserInfo__UserID__35BCFE0A" FromRole="UserInfo" ToRole="Account" />
+          <NavigationProperty Name="Adress" Relationship="Self.FK__UserInfo__Adress__37A5467C" FromRole="UserInfo" ToRole="Adress" />
+          <NavigationProperty Name="BankCardInfo" Relationship="Self.FK__UserInfo__BankCa__36B12243" FromRole="UserInfo" ToRole="BankCardInfo" />
+        </EntityType>
+        <EntityType Name="Ordered">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="ItemID" />
+            <PropertyRef Name="Amount" />
+          </Key>
+          <Property Name="OrderID" Type="Int64" Nullable="false" />
+          <Property Name="ItemID" Type="Int64" Nullable="false" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="Self.FK__Ordered__ItemID__44FF419A" FromRole="Ordered" ToRole="Item" />
+          <NavigationProperty Name="Order" Relationship="Self.FK__Ordered__OrderID__440B1D61" FromRole="Ordered" ToRole="Order" />
+        </EntityType>
+        <Association Name="FK__Order__UserID__412EB0B6">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserInfo__UserID__35BCFE0A">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Adress__CountryI__32E0915F">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Adress" Type="Self.Adress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Adress">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserInfo__Adress__37A5467C">
+          <End Role="Adress" Type="Self.Adress" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adress">
+              <PropertyRef Name="AdressID" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="AdressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BankCardI__BankI__2B3F6F97">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="0..1" />
+          <End Role="BankCardInfo" Type="Self.BankCardInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="BankID" />
+            </Principal>
+            <Dependent Role="BankCardInfo">
+              <PropertyRef Name="BankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserInfo__BankCa__36B12243">
+          <End Role="BankCardInfo" Type="Self.BankCardInfo" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankCardInfo">
+              <PropertyRef Name="BankCardInfoID" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="BankCardInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Item__CategoryID__3C69FB99">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ordered__ItemID__44FF419A">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="Ordered" Type="Self.Ordered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="Ordered">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__StatusID__4222D4EF">
+          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ordered__OrderID__440B1D61">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Ordered" Type="Self.Ordered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Ordered">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Traiding_CompanyEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Account" EntityType="Self.Account" />
+          <EntitySet Name="Adress" EntityType="Self.Adress" />
+          <EntitySet Name="Bank" EntityType="Self.Bank" />
+          <EntitySet Name="BankCardInfo" EntityType="Self.BankCardInfo" />
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="Country" EntityType="Self.Country" />
+          <EntitySet Name="Item" EntityType="Self.Item" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" />
+          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" />
+          <EntitySet Name="Ordered" EntityType="Self.Ordered" />
+          <AssociationSet Name="FK__Order__UserID__412EB0B6" Association="Self.FK__Order__UserID__412EB0B6">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserInfo__UserID__35BCFE0A" Association="Self.FK__UserInfo__UserID__35BCFE0A">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="UserInfo" EntitySet="UserInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Adress__CountryI__32E0915F" Association="Self.FK__Adress__CountryI__32E0915F">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Adress" EntitySet="Adress" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserInfo__Adress__37A5467C" Association="Self.FK__UserInfo__Adress__37A5467C">
+            <End Role="Adress" EntitySet="Adress" />
+            <End Role="UserInfo" EntitySet="UserInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BankCardI__BankI__2B3F6F97" Association="Self.FK__BankCardI__BankI__2B3F6F97">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="BankCardInfo" EntitySet="BankCardInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserInfo__BankCa__36B12243" Association="Self.FK__UserInfo__BankCa__36B12243">
+            <End Role="BankCardInfo" EntitySet="BankCardInfo" />
+            <End Role="UserInfo" EntitySet="UserInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Item__CategoryID__3C69FB99" Association="Self.FK__Item__CategoryID__3C69FB99">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ordered__ItemID__44FF419A" Association="Self.FK__Ordered__ItemID__44FF419A">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Ordered" EntitySet="Ordered" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__StatusID__4222D4EF" Association="Self.FK__Order__StatusID__4222D4EF">
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ordered__OrderID__440B1D61" Association="Self.FK__Ordered__OrderID__440B1D61">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Ordered" EntitySet="Ordered" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище TradingCompanyContainer" CdmEntityContainer="Traiding_CompanyEntities2">
+          <EntitySetMapping Name="Account">
+            <EntityTypeMapping TypeName="TradingCompany.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Adress">
+            <EntityTypeMapping TypeName="TradingCompany.Adress">
+              <MappingFragment StoreEntitySet="Adress">
+                <ScalarProperty Name="AdressID" ColumnName="AdressID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bank">
+            <EntityTypeMapping TypeName="TradingCompany.Bank">
+              <MappingFragment StoreEntitySet="Bank">
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Swift" ColumnName="Swift" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankCardInfo">
+            <EntityTypeMapping TypeName="TradingCompany.BankCardInfo">
+              <MappingFragment StoreEntitySet="BankCardInfo">
+                <ScalarProperty Name="BankCardInfoID" ColumnName="BankCardInfoID" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="CVV" ColumnName="CVV" />
+                <ScalarProperty Name="ExtendDate" ColumnName="ExtendDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="TradingCompany.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Country">
+            <EntityTypeMapping TypeName="TradingCompany.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Item">
+            <EntityTypeMapping TypeName="TradingCompany.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemTitle" ColumnName="ItemTitle" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="InStock" ColumnName="InStock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="TradingCompany.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="Ordernumber" ColumnName="Ordernumber" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderStatus">
+            <EntityTypeMapping TypeName="TradingCompany.OrderStatus">
+              <MappingFragment StoreEntitySet="OrderStatus">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserInfo">
+            <EntityTypeMapping TypeName="TradingCompany.UserInfo">
+              <MappingFragment StoreEntitySet="UserInfo">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="BankCardInfoID" ColumnName="BankCardInfoID" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="AdressID" ColumnName="AdressID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ordered">
+            <EntityTypeMapping TypeName="TradingCompany.Ordered">
+              <MappingFragment StoreEntitySet="Ordered">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

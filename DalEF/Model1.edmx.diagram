@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f949dbd1306f4c0493ced485ec95c1cb" Name="Diagram1">
+        <EntityTypeShape EntityType="TradingCompany.Account" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TradingCompany.Adress" Width="1.5" PointX="3.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TradingCompany.Bank" Width="1.5" PointX="1.5" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TradingCompany.BankCardInfo" Width="1.5" PointX="3.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TradingCompany.Category" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TradingCompany.Country" Width="1.5" PointX="1.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TradingCompany.Item" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TradingCompany.Order" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TradingCompany.OrderStatus" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TradingCompany.UserInfo" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TradingCompany.Ordered" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="TradingCompany.FK__Order__UserID__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="TradingCompany.FK__UserInfo__UserID__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="TradingCompany.FK__Adress__CountryI__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="TradingCompany.FK__UserInfo__Adress__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="TradingCompany.FK__BankCardI__BankI__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="TradingCompany.FK__UserInfo__BankCa__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="TradingCompany.FK__Item__CategoryID__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="TradingCompany.FK__Ordered__ItemID__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="TradingCompany.FK__Order__StatusID__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="TradingCompany.FK__Ordered__OrderID__440B1D61" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

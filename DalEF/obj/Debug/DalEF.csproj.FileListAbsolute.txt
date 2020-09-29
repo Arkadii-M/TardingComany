@@ -1,0 +1,16 @@
+C:\Users\Programmer\source\repos\Trading_Company\DalEF\obj\Debug\DalEF.csprojAssemblyReference.cache
+C:\Users\Programmer\source\repos\Trading_Company\DalEF\obj\Debug\DalEF.csproj.CoreCompileInputs.cache
+C:\Users\Programmer\source\repos\Trading_Company\DalEF\bin\Debug\DalEF.dll.config
+C:\Users\Programmer\source\repos\Trading_Company\DalEF\bin\Debug\DalEF.dll
+C:\Users\Programmer\source\repos\Trading_Company\DalEF\bin\Debug\DalEF.pdb
+C:\Users\Programmer\source\repos\Trading_Company\DalEF\bin\Debug\AutoMapper.dll
+C:\Users\Programmer\source\repos\Trading_Company\DalEF\bin\Debug\DTO.dll
+C:\Users\Programmer\source\repos\Trading_Company\DalEF\bin\Debug\EntityFramework.dll
+C:\Users\Programmer\source\repos\Trading_Company\DalEF\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Programmer\source\repos\Trading_Company\DalEF\bin\Debug\DTO.pdb
+C:\Users\Programmer\source\repos\Trading_Company\DalEF\bin\Debug\AutoMapper.xml
+C:\Users\Programmer\source\repos\Trading_Company\DalEF\bin\Debug\EntityFramework.xml
+C:\Users\Programmer\source\repos\Trading_Company\DalEF\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Programmer\source\repos\Trading_Company\DalEF\obj\Debug\DalEF.csproj.CopyComplete
+C:\Users\Programmer\source\repos\Trading_Company\DalEF\obj\Debug\DalEF.dll
+C:\Users\Programmer\source\repos\Trading_Company\DalEF\obj\Debug\DalEF.pdb
