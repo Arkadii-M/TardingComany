@@ -76,5 +76,25 @@ namespace DalEfTests.Tests
         {
             return new AdressDTO() { City = "Lviv", Street = "Some street", CountryID = 7 };
         }
+        public static CategoryDTO CreateCategoryDTO()
+        {
+            return new CategoryDTO { Name = "Some category name" };
+        }
+        public static ItemDTO CreateItemDTO()
+        {
+            return new ItemDTO { InStock = 10, ItemTitle = "test item", CategoryID = 1, Price = 777 };
+        }
+        public static OrderStatusDTO CreateOrderStatusDTO()
+        {
+            return new OrderStatusDTO { Name = "test status" };
+        }
+        public static OrderDTO CreateOrderDTO()
+        {
+            return new OrderDTO { Ordernumber = "123", UserID = 1, Comment = "test", Date = DateTime.Now, StatusID = 1 };
+        }
+        public static OrderedDTO CreateOrderedDTO()
+        {
+            return new OrderedDTO { Amount = 3, OrderID = 1, ItemID = 1 };
+        }
     }
 }

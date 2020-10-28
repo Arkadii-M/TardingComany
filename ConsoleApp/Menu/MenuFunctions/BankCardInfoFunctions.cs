@@ -35,7 +35,7 @@ namespace ConsoleApplicationTC.Menu.MenuFunctions
             var cardInfo = new BankCardInfoDTO() { BankID = bankid, CardNumber = CardNum, CVV = Cvv,ExtendDate =Convert.ToDateTime(Date)};
             var _mapper = SetupMapper();
             DalEF.Concrete.BankCardInfoDalEf dal = new BankCardInfoDalEf(_mapper);
-            var res = dal.CreateBankCardInfo(cardInfo);
+            dal.CreateBankCardInfo(cardInfo);
             
         }
         public static void Delete()

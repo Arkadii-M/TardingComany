@@ -6,6 +6,7 @@ using DalEF.Concrete;
 using System.Security.Cryptography;
 using AutoMapper;
 using System.ComponentModel.DataAnnotations;
+using AutoMapper.Configuration.Annotations;
 
 namespace ConsoleApplicationTC.Menu.MenuFunctions
 {
@@ -29,11 +30,12 @@ namespace ConsoleApplicationTC.Menu.MenuFunctions
         {
             var _mapper = SetupMapperA();
             DalEF.Concrete.AccountDalEf accDal = new DalEF.Concrete.AccountDalEf(_mapper);
-            var Salt = "1627ebdkdns"; // some random salt
+           // var Salt = "1627ebdkdns"; // some random salt
             Console.WriteLine("Login:");
             var log = Console.ReadLine();
             Console.WriteLine("Password");
             var pwd = Console.ReadLine();
+            /*
             byte[] bytes = Encoding.ASCII.GetBytes(pwd + Salt) ;
             byte[] pass;
             using (var crypt = SHA1.Create())
@@ -43,7 +45,8 @@ namespace ConsoleApplicationTC.Menu.MenuFunctions
             }
             AccountDTO account = new AccountDTO() { UserLogin = log, UserPassword = pass, Salt = Salt };
             account = accDal.CreateAccount(account);
-
+            */
+            var account = accDal.CreateAccount(log, pwd);
             _mapper = SetupMapperU();
             DalEF.Concrete.UserInfoDalEf uDal = new DalEF.Concrete.UserInfoDalEf(_mapper);
             Console.WriteLine("Name:");

@@ -76,6 +76,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{d7035b20-5184-44ff-b3a9-292221fb836f}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DalEF\DalEF.csproj">
       <Project>{0ef87a46-5a05-43e8-ba03-085947098641}</Project>
       <Name>DalEF</Name>

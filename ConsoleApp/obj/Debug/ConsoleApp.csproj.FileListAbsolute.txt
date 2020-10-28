@@ -17,3 +17,5 @@ C:\Users\Programmer\source\repos\Trading_Company\ConsoleApp\obj\Debug\ConsoleApp
 C:\Users\Programmer\source\repos\Trading_Company\ConsoleApp\obj\Debug\ConsoleApp.pdb
 C:\Users\Programmer\source\repos\Trading_Company\ConsoleApp\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Programmer\source\repos\Trading_Company\ConsoleApp\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Programmer\source\repos\Trading_Company\ConsoleApp\bin\Debug\BusinessLogic.dll
+C:\Users\Programmer\source\repos\Trading_Company\ConsoleApp\bin\Debug\BusinessLogic.pdb

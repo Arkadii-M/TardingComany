@@ -11,8 +11,8 @@
           </Key>
           <Property Name="UserID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserLogin" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="UserPassword" Type="binary" MaxLength="50" Nullable="false" />
-          <Property Name="Salt" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="UserPassword" Type="binary" MaxLength="64" Nullable="false" />
+          <Property Name="Salt" Type="varchar" MaxLength="64" Nullable="false" />
         </EntityType>
         <EntityType Name="Adress">
           <Key>
@@ -39,7 +39,7 @@
           <Property Name="BankID" Type="int" />
           <Property Name="CardNumber" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="CVV" Type="int" Nullable="false" />
-          <Property Name="ExtendDate" Type="datetime2" Precision="7" Nullable="false" StoreGeneratedPattern="None" />
+          <Property Name="ExtendDate" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -59,7 +59,7 @@
           <Key>
             <PropertyRef Name="ItemID" />
           </Key>
-          <Property Name="ItemID" Type="bigint" Nullable="false" />
+          <Property Name="ItemID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ItemTitle" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="CategoryID" Type="bigint" Nullable="false" />
           <Property Name="Price" Type="numeric" Precision="15" Scale="2" Nullable="false" />
@@ -69,9 +69,9 @@
           <Key>
             <PropertyRef Name="OrderID" />
           </Key>
-          <Property Name="OrderID" Type="bigint" Nullable="false" />
+          <Property Name="OrderID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ordernumber" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" StoreGeneratedPattern="None" />
+          <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="UserID" Type="bigint" Nullable="false" />
           <Property Name="StatusID" Type="int" Nullable="false" />
           <Property Name="Comment" Type="varchar" MaxLength="200" />
@@ -102,8 +102,8 @@
           <Property Name="UserID" Type="bigint" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="MobilePhone" Type="varchar" MaxLength="20" />
-          <Property Name="Email" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="MobilePhone" Type="varchar" MaxLength="30" />
+          <Property Name="Email" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="BankCardInfoID" Type="bigint" Nullable="false" />
           <Property Name="Gender" Type="bit" Nullable="false" />
           <Property Name="AdressID" Type="bigint" Nullable="false" />
@@ -297,8 +297,8 @@
           </Key>
           <Property Name="UserID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserLogin" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserPassword" Type="Binary" MaxLength="50" FixedLength="true" Nullable="false" />
-          <Property Name="Salt" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserPassword" Type="Binary" MaxLength="64" FixedLength="true" Nullable="false" />
+          <Property Name="Salt" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Self.FK__Order__UserID__412EB0B6" FromRole="Account" ToRole="Order" />
           <NavigationProperty Name="UserInfo" Relationship="Self.FK__UserInfo__UserID__35BCFE0A" FromRole="Account" ToRole="UserInfo" />
         </EntityType>
@@ -391,8 +391,8 @@
           <Property Name="UserID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MobilePhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MobilePhone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="BankCardInfoID" Type="Int64" Nullable="false" />
           <Property Name="Gender" Type="Boolean" Nullable="false" />
           <Property Name="AdressID" Type="Int64" Nullable="false" />

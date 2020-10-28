@@ -12,7 +12,6 @@ namespace DalEF.Interfaces
         CountryDTO GetCountryByID(int id);
         List<CountryDTO> GetAllCountries();
         CountryDTO CreateCountry(CountryDTO country);
-
         CountryDTO UpdateCountry(CountryDTO country);
         bool DeleteCountry(int id);
     }

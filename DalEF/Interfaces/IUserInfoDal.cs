@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DAL.Interfaces
 {
-    interface IUserInfoDal
+    public interface IUserInfoDal
     {
         UserInfoDTO CreateUserInfo(UserInfoDTO info);
 

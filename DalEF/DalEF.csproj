@@ -81,7 +81,12 @@
     <Compile Include="Concrete\AdressDalEf.cs" />
     <Compile Include="Concrete\BankCardInfoDalEf.cs" />
     <Compile Include="Concrete\BankDalEf.cs" />
+    <Compile Include="Concrete\CategoryDalEf.cs" />
     <Compile Include="Concrete\CountryDalEf.cs" />
+    <Compile Include="Concrete\ItemDalEf.cs" />
+    <Compile Include="Concrete\OrderDalEf.cs" />
+    <Compile Include="Concrete\OrderedDalEf.cs" />
+    <Compile Include="Concrete\OrderStatusDalEf.cs" />
     <Compile Include="Concrete\UserInfoDalEf.cs" />
     <Compile Include="Country.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -90,7 +95,12 @@
     <Compile Include="Interfaces\IAdressDal.cs" />
     <Compile Include="Interfaces\IBankCardInfoDal.cs" />
     <Compile Include="Interfaces\IBankDal.cs" />
+    <Compile Include="Interfaces\ICategoryDal.cs" />
     <Compile Include="Interfaces\ICountryDal.cs" />
+    <Compile Include="Interfaces\IItemDal.cs" />
+    <Compile Include="Interfaces\IOrderDal.cs" />
+    <Compile Include="Interfaces\IOrderedDal.cs" />
+    <Compile Include="Interfaces\IOrderStatusDal.cs" />
     <Compile Include="Interfaces\IUserInfoDal.cs" />
     <Compile Include="Item.cs">
       <DependentUpon>Model1.tt</DependentUpon>

@@ -1,0 +1,16 @@
+C:\Users\Programmer\source\repos\Trading_Company\BusinessLogic\bin\Debug\BusinessLogic.dll
+C:\Users\Programmer\source\repos\Trading_Company\BusinessLogic\bin\Debug\BusinessLogic.pdb
+C:\Users\Programmer\source\repos\Trading_Company\BusinessLogic\bin\Debug\DalEF.dll
+C:\Users\Programmer\source\repos\Trading_Company\BusinessLogic\bin\Debug\DTO.dll
+C:\Users\Programmer\source\repos\Trading_Company\BusinessLogic\bin\Debug\EntityFramework.dll
+C:\Users\Programmer\source\repos\Trading_Company\BusinessLogic\bin\Debug\AutoMapper.dll
+C:\Users\Programmer\source\repos\Trading_Company\BusinessLogic\bin\Debug\DalEF.pdb
+C:\Users\Programmer\source\repos\Trading_Company\BusinessLogic\bin\Debug\DalEF.dll.config
+C:\Users\Programmer\source\repos\Trading_Company\BusinessLogic\bin\Debug\DTO.pdb
+C:\Users\Programmer\source\repos\Trading_Company\BusinessLogic\bin\Debug\EntityFramework.xml
+C:\Users\Programmer\source\repos\Trading_Company\BusinessLogic\bin\Debug\AutoMapper.xml
+C:\Users\Programmer\source\repos\Trading_Company\BusinessLogic\obj\Debug\BusinessLogic.csprojAssemblyReference.cache
+C:\Users\Programmer\source\repos\Trading_Company\BusinessLogic\obj\Debug\BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\Programmer\source\repos\Trading_Company\BusinessLogic\obj\Debug\BusinessLogic.csproj.CopyComplete
+C:\Users\Programmer\source\repos\Trading_Company\BusinessLogic\obj\Debug\BusinessLogic.dll
+C:\Users\Programmer\source\repos\Trading_Company\BusinessLogic\obj\Debug\BusinessLogic.pdb
