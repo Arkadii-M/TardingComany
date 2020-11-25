@@ -1,0 +1,8 @@
+`2020-10-31 23:01:40.6475`Info`TradingCompanyWF.Program`User Logined. Username: sha512_64
+`2020-10-31 23:01:42.9913`Info`TradingCompanyWF.Program`User sha512_64 open Catalog
+`2020-10-31 23:01:44.6469`Info`TradingCompanyWF.Program`User sha512_64 open OrderHistory
+`2020-10-31 23:01:46.0624`Info`TradingCompanyWF.Program`User sha512_64 open UserPage
+`2020-10-31 23:04:59.8966`Info`TradingCompanyWF.Program`User Logined. Username: sha512_64
+`2020-10-31 23:05:02.7006`Info`TradingCompanyWF.Program`User sha512_64 open UserPage
+`2020-10-31 23:05:04.2532`Info`TradingCompanyWF.Program`User sha512_64 open Catalog
+`2020-10-31 23:05:05.8371`Info`TradingCompanyWF.Program`User sha512_64 open OrderHistory

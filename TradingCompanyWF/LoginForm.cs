@@ -1,5 +1,6 @@
 ﻿using BusinessLogic;
 using BusinessLogic.Interfaces;
+using NLog.Fluent;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,6 +13,7 @@ using System.Windows.Forms;
 using TradingCompanyWF.Models.Interfaces;
 using Unity;
 using Unity.Resolution;
+
 
 namespace TradingCompanyWF
 {
@@ -41,17 +43,27 @@ namespace TradingCompanyWF
         }
         private void doLogin()
         {
-            if (_manager.Login(Login.Text, Password.Text))
+            try
             {
-                this._user.Login = Login.Text;
-                this._user.UserId = this._userInfoManager.GetUserInfoByLogin(Login.Text).UserID;
-                DialogResult = DialogResult.OK;
-                this.Close();
+
+
+                if (_manager.Login(Login.Text, Password.Text))
+                {
+                    this._user.Login = Login.Text;
+                    this._user.UserId = this._userInfoManager.GetUserInfoByLogin(Login.Text).UserID;
+                    DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    Program.log.Warn("Logined failed. Login: {0}", (string)Login.Text);
+                    MessageBox.Show("User name or password is incorrect");
+                    Password.Clear();
+                }
             }
-            else
+            catch(Exception exp)
             {
-                MessageBox.Show("User name or password is incorrect");
-                Password.Clear();
+                Program.log.Error(exp);
             }
         }
 
@@ -65,9 +77,11 @@ namespace TradingCompanyWF
 
         private void ShowRegister()
         {
+            Program.log.Info("User open register page");
             RegisterForm reg = Program.Container.Resolve<RegisterForm>(new ResolverOverride[] { new ParameterOverride("user", _user) });
             if(reg.ShowDialog() == DialogResult.OK)
             {
+                Program.log.Info("Registration DialogResult OK");
                 this.Login.Text = _user.Login;
             }
         }

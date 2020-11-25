@@ -21,5 +21,10 @@ namespace BusinessLogic.Concrete
         {
             return this._itemDal.GetAllItems();
         }
+
+        public ItemDTO GetItemById(int id)
+        {
+            return this._itemDal.GetItemByID(id);
+        }
     }
 }

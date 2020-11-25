@@ -16,6 +16,7 @@ using BusinessLogic.Interfaces;
 using TradingCompanyWF.Models.Interfaces;
 using TradingCompanyWF.Models.Concrete;
 using Unity.Resolution;
+using NLog;
 
 namespace TradingCompanyWF
 {
@@ -23,6 +24,8 @@ namespace TradingCompanyWF
     {
         public static UnityContainer Container;
         public static IApplicationUser _user;
+        //public static Logger log = LogManager.GetCurrentClassLogger();
+        public static Logger log = LogManager.GetCurrentClassLogger();
         [STAThread]
         static void Main()
         {
@@ -33,12 +36,15 @@ namespace TradingCompanyWF
 
             //Container.AddExtension(new Diagnostic());
             LoginForm lf = Container.Resolve<LoginForm>(new ResolverOverride[] { new ParameterOverride("user", _user) });
+
             if (lf.ShowDialog() == DialogResult.OK)
             {
+                log.Info("User Logined. Username: {0}",_user.Login);
                 Application.Run(Container.Resolve<UserStartPage>(new ResolverOverride[] {new ParameterOverride("user", _user)}));
             }
             else
             {
+               log.Info("Exit application");
                Application.Exit();
             }
 
@@ -55,6 +61,7 @@ namespace TradingCompanyWF
 
             Container = new UnityContainer();
             Container.RegisterInstance<IMapper>(config.CreateMapper());
+
             Container.RegisterType<IAccountDal, AccountDalEf>()
                      .RegisterType<IAdressDal, AdressDalEf>()
                      .RegisterType<IBankCardInfoDal, BankCardInfoDalEf>()

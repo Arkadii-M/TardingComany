@@ -10,5 +10,6 @@ namespace BusinessLogic.Interfaces
     public interface IItemManager
     {
         List<ItemDTO> GetAllItems();
+        ItemDTO GetItemById(int id);
     }
 }

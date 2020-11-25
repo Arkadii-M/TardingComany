@@ -11,5 +11,6 @@ namespace BusinessLogic.Interfaces
     public interface IOrderedManager
     {
         List<OrderedDTO> GetAllOrderedItems();
+        OrderedDTO GetOrderedById(int id);
     }
 }

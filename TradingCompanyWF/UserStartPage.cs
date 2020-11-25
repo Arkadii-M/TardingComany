@@ -50,20 +50,21 @@ namespace TradingCompanyWF
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Program.log.Info("User {0} open Catalog",_user.Login);
             Catalog cat = Program.Container.Resolve<Catalog>(new ResolverOverride[] { new ParameterOverride("user", _user) });
             cat.ShowDialog();
         }
 
         private void OrderHistoryButton_Click(object sender, EventArgs e)
         {
-
+            Program.log.Info("User {0} open OrderHistory",_user.Login);
             OrderHistory orders = Program.Container.Resolve<OrderHistory>(new ResolverOverride[] { new ParameterOverride("user", _user) });
             orders.ShowDialog();
         }
 
         private void MyPageButton_Click(object sender, EventArgs e)
         {
-           
+            Program.log.Info("User {0} open UserPage",_user.Login);
             UserPage form = Program.Container.Resolve<UserPage>(new ResolverOverride[] { new ParameterOverride("user", _user) });
             form.ShowDialog();
         }

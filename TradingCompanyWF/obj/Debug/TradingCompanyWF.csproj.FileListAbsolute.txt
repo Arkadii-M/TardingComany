@@ -35,3 +35,6 @@ C:\Users\Programmer\source\repos\Trading_Company\TradingCompanyWF\obj\Debug\Trad
 C:\Users\Programmer\source\repos\Trading_Company\TradingCompanyWF\obj\Debug\TradingCompanyWF.Catalog.resources
 C:\Users\Programmer\source\repos\Trading_Company\TradingCompanyWF\obj\Debug\TradingCompanyWF.OrderHistory.resources
 C:\Users\Programmer\source\repos\Trading_Company\TradingCompanyWF\obj\Debug\TradingCompanyWF.UserPage.resources
+C:\Users\Programmer\source\repos\Trading_Company\TradingCompanyWF\bin\Debug\NLog.config
+C:\Users\Programmer\source\repos\Trading_Company\TradingCompanyWF\bin\Debug\NLog.dll
+C:\Users\Programmer\source\repos\Trading_Company\TradingCompanyWF\bin\Debug\NLog.xml

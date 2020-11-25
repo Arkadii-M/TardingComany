@@ -22,5 +22,9 @@ namespace BusinessLogic.Concrete
             return this._orderedDal.GetAllOrdered();
         }
 
+        public OrderedDTO GetOrderedById(int id)
+        {
+            return this._orderedDal.GetOrderedByID(id);
+        }
     }
 }

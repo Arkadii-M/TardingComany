@@ -79,9 +79,11 @@ namespace TradingCompanyWF
                     addres))
                 {
                     MessageBox.Show("This login already exist,please use another login.");
+                    Program.log.Info("User use login which already exist");
                 }
                 else
                 {
+                    Program.log.Info("New user registered. Login: {0}",(string)Login.Text);
                     this._user.Login = Login.Text;
                     DialogResult = DialogResult.OK;
                     this.Close();
@@ -89,6 +91,7 @@ namespace TradingCompanyWF
             }
             catch(Exception exp)
             {
+                Program.log.Error(exp.Message);
                 MessageBox.Show(exp.Message);
             }
         }
