@@ -1,0 +1,76 @@
+﻿@model TradingCompanyMVC.Models.FullOrderInfo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ordernumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ordernumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+
+        <dt>
+            Items in order:
+        </dt>
+        <dd>
+            <p></p>
+        </dd>
+    </dl>
+</div>
+<table class="table">
+    <tr>
+        <td>
+            Item tile
+        </td>
+        <td>
+            Amount
+        </td>
+    </tr>
+
+    @foreach (var ordered_item in Model.OrderedProducts)
+    {
+        <tr>
+            <td>
+                @ordered_item.ItemTitle
+            </td>
+            <td>
+                @ordered_item.Amount
+            </td>
+        </tr>
+    }
+</table>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

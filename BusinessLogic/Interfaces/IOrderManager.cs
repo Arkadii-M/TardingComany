@@ -11,6 +11,8 @@ namespace BusinessLogic.Interfaces
     {
         List<OrderDTO> GetAllOrders();
         List<OrderDTO> GetAllOrdersByUserId(int id);
+
+        OrderDTO GetOrderById(int id);
         void SetOrderStatus(int OrderStatusId, int OrderId);
     }
 }

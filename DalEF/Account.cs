@@ -18,6 +18,7 @@ namespace DalEF
         public Account()
         {
             this.Order = new HashSet<Order>();
+            this.Privilege = new HashSet<Privilege>();
         }
     
         public long UserID { get; set; }
@@ -28,5 +29,7 @@ namespace DalEF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Order { get; set; }
         public virtual UserInfo UserInfo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Privilege> Privilege { get; set; }
     }
 }

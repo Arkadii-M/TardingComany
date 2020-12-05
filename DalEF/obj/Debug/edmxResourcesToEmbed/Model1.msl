@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Хранилище TradingCompanyContainer" CdmEntityContainer="Traiding_CompanyEntities2">
+  <EntityContainerMapping StorageEntityContainer="Хранилище DbModelContainer" CdmEntityContainer="Entity">
     <EntitySetMapping Name="Account">
-      <EntityTypeMapping TypeName="TradingCompany.Account">
+      <EntityTypeMapping TypeName="DbModel.Account">
         <MappingFragment StoreEntitySet="Account">
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
@@ -12,7 +12,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Adress">
-      <EntityTypeMapping TypeName="TradingCompany.Adress">
+      <EntityTypeMapping TypeName="DbModel.Adress">
         <MappingFragment StoreEntitySet="Adress">
           <ScalarProperty Name="AdressID" ColumnName="AdressID" />
           <ScalarProperty Name="CountryID" ColumnName="CountryID" />
@@ -22,7 +22,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Bank">
-      <EntityTypeMapping TypeName="TradingCompany.Bank">
+      <EntityTypeMapping TypeName="DbModel.Bank">
         <MappingFragment StoreEntitySet="Bank">
           <ScalarProperty Name="BankID" ColumnName="BankID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -31,7 +31,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="BankCardInfo">
-      <EntityTypeMapping TypeName="TradingCompany.BankCardInfo">
+      <EntityTypeMapping TypeName="DbModel.BankCardInfo">
         <MappingFragment StoreEntitySet="BankCardInfo">
           <ScalarProperty Name="BankCardInfoID" ColumnName="BankCardInfoID" />
           <ScalarProperty Name="BankID" ColumnName="BankID" />
@@ -42,7 +42,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Category">
-      <EntityTypeMapping TypeName="TradingCompany.Category">
+      <EntityTypeMapping TypeName="DbModel.Category">
         <MappingFragment StoreEntitySet="Category">
           <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -50,7 +50,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Country">
-      <EntityTypeMapping TypeName="TradingCompany.Country">
+      <EntityTypeMapping TypeName="DbModel.Country">
         <MappingFragment StoreEntitySet="Country">
           <ScalarProperty Name="CountryID" ColumnName="CountryID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -58,7 +58,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Item">
-      <EntityTypeMapping TypeName="TradingCompany.Item">
+      <EntityTypeMapping TypeName="DbModel.Item">
         <MappingFragment StoreEntitySet="Item">
           <ScalarProperty Name="ItemID" ColumnName="ItemID" />
           <ScalarProperty Name="ItemTitle" ColumnName="ItemTitle" />
@@ -69,7 +69,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Order">
-      <EntityTypeMapping TypeName="TradingCompany.Order">
+      <EntityTypeMapping TypeName="DbModel.Order">
         <MappingFragment StoreEntitySet="Order">
           <ScalarProperty Name="OrderID" ColumnName="OrderID" />
           <ScalarProperty Name="Ordernumber" ColumnName="Ordernumber" />
@@ -81,15 +81,23 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="OrderStatus">
-      <EntityTypeMapping TypeName="TradingCompany.OrderStatus">
+      <EntityTypeMapping TypeName="DbModel.OrderStatus">
         <MappingFragment StoreEntitySet="OrderStatus">
           <ScalarProperty Name="StatusID" ColumnName="StatusID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Privilege">
+      <EntityTypeMapping TypeName="DbModel.Privilege">
+        <MappingFragment StoreEntitySet="Privilege">
+          <ScalarProperty Name="PrivilegeID" ColumnName="PrivilegeID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="UserInfo">
-      <EntityTypeMapping TypeName="TradingCompany.UserInfo">
+      <EntityTypeMapping TypeName="DbModel.UserInfo">
         <MappingFragment StoreEntitySet="UserInfo">
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -103,7 +111,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Ordered">
-      <EntityTypeMapping TypeName="TradingCompany.Ordered">
+      <EntityTypeMapping TypeName="DbModel.Ordered">
         <MappingFragment StoreEntitySet="Ordered">
           <ScalarProperty Name="OrderID" ColumnName="OrderID" />
           <ScalarProperty Name="ItemID" ColumnName="ItemID" />
@@ -111,5 +119,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <AssociationSetMapping Name="UserPrivileges" TypeName="DbModel.UserPrivileges" StoreEntitySet="UserPrivileges">
+      <EndProperty Name="Privilege">
+        <ScalarProperty Name="PrivilegeID" ColumnName="PrivilegeID" />
+      </EndProperty>
+      <EndProperty Name="Account">
+        <ScalarProperty Name="UserID" ColumnName="UserID" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -11,5 +11,10 @@ namespace BusinessLogic.Interfaces
     {
         List<ItemDTO> GetAllItems();
         ItemDTO GetItemById(int id);
+
+        bool DeleteItemById(int id);
+
+        ItemDTO AddItem(ItemDTO item);
+        ItemDTO UpdateItem(ItemDTO item);
     }
 }

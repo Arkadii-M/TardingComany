@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b9e9eb13457147b2b538d2b4a0ec3ccb" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Account" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Adress" Width="1.5" PointX="6" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Bank" Width="1.5" PointX="3.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.BankCardInfo" Width="1.5" PointX="6" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Category" Width="1.5" PointX="6" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Country" Width="1.5" PointX="3.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Item" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Order" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.OrderStatus" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Privilege" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.UserInfo" Width="1.5" PointX="8.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Ordered" Width="1.5" PointX="10.5" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK__Order__UserID__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__UserInfo__UserID__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Adress__CountryI__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__UserInfo__Adress__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__BankCardI__BankI__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__UserInfo__BankCa__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Item__CategoryID__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Ordered__ItemID__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Order__StatusID__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Ordered__OrderID__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.UserPrivileges" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

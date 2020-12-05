@@ -19,7 +19,7 @@ namespace DalEF.Concrete
         }
         public CategoryDTO CreateCategory(CategoryDTO category)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 Category c = _mapper.Map<Category>(category);
                 e.Category.Add(c);
@@ -30,7 +30,7 @@ namespace DalEF.Concrete
 
         public bool DeleteCategory(int id)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 var c = e.Category.SingleOrDefault(a => a.CategoryID == id);
                 if (c == null)
@@ -45,7 +45,7 @@ namespace DalEF.Concrete
 
         public List<CategoryDTO> GetAllCategories()
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 return _mapper.Map<List<CategoryDTO>>(e.Category.ToList());
             }
@@ -53,7 +53,7 @@ namespace DalEF.Concrete
 
         public CategoryDTO GetCategoryByID(int id)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 var c = e.Category.SingleOrDefault(a => a.CategoryID == id);
                 if (c == null)
@@ -66,7 +66,7 @@ namespace DalEF.Concrete
 
         public CategoryDTO UpdateCategory(CategoryDTO category)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 e.Category.AddOrUpdate(_mapper.Map<Category>(category));
                 e.SaveChanges();

@@ -21,7 +21,7 @@ namespace DalEF.Concrete
 
         public CountryDTO CreateCountry(CountryDTO country)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 Country c = _mapper.Map<Country>(country);
                 e.Country.Add(c);
@@ -32,7 +32,7 @@ namespace DalEF.Concrete
 
         public bool DeleteCountry(int id)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 var c = e.Country.SingleOrDefault(a => a.CountryID == id);
                 if (c == null)
@@ -47,7 +47,7 @@ namespace DalEF.Concrete
 
         public List<CountryDTO> GetAllCountries()
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 return _mapper.Map<List<CountryDTO>>(e.Country.ToList());
             }
@@ -55,7 +55,7 @@ namespace DalEF.Concrete
 
         public CountryDTO GetCountryByID(int id)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 var c = e.Country.SingleOrDefault(a => a.CountryID == id);
                 if (c == null)
@@ -68,7 +68,7 @@ namespace DalEF.Concrete
 
         public CountryDTO UpdateCountry(CountryDTO country)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 e.Country.AddOrUpdate(_mapper.Map<Country>(country));
                 e.SaveChanges();

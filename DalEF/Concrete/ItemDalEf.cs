@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 using AutoMapper;
 using DalEF.Interfaces;
 using DTO;
+using DAL.Interfaces;
+using DalEF.Profiles;
+using System.Security.Cryptography;
+using System.Data.Entity;
+
 
 namespace DalEF.Concrete
 {
@@ -20,7 +25,7 @@ namespace DalEF.Concrete
 
         public ItemDTO CreateItem(ItemDTO item)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 Item i = _mapper.Map<Item>(item);
                 e.Item.Add(i);
@@ -31,7 +36,7 @@ namespace DalEF.Concrete
 
         public bool DeleteItem(int id)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 var i = e.Item.SingleOrDefault(a => a.ItemID == id);
                 if (i == null)
@@ -46,7 +51,7 @@ namespace DalEF.Concrete
 
         public List<ItemDTO> GetAllItems()
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 return _mapper.Map<List<ItemDTO>>(e.Item.ToList());
             }
@@ -54,7 +59,7 @@ namespace DalEF.Concrete
 
         public ItemDTO GetItemByID(int id)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 var i = e.Item.SingleOrDefault(a => a.ItemID == id);
                 if (i == null)
@@ -67,7 +72,7 @@ namespace DalEF.Concrete
 
         public ItemDTO UpdateItem(ItemDTO item)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 e.Item.AddOrUpdate(_mapper.Map<Item>(item));
                 e.SaveChanges();

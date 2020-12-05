@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Concrete\AccountManager.cs" />
     <Compile Include="Concrete\AdressManager.cs" />
     <Compile Include="Concrete\AuthManager.cs" />
     <Compile Include="Concrete\BankManager.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Concrete\OrderManager.cs" />
     <Compile Include="Concrete\RegisterManager.cs" />
     <Compile Include="Concrete\UserInfoManager.cs" />
+    <Compile Include="Interfaces\IAccountManager.cs" />
     <Compile Include="Interfaces\IAdressManager.cs" />
     <Compile Include="Interfaces\IAuthManager.cs" />
     <Compile Include="Interfaces\IBankManager.cs" />

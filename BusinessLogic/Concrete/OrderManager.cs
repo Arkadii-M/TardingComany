@@ -27,6 +27,11 @@ namespace BusinessLogic.Concrete
             return ord_list.Where<OrderDTO>(o => o.UserID == id).ToList();
         }
 
+        public OrderDTO GetOrderById(int id)
+        {
+            return this._orderDal.GetOrderByID(id);
+        }
+
         public void SetOrderStatus(int OrderStatusId, int OrderId)
         {
             var order = this._orderDal.GetOrderByID(OrderId);

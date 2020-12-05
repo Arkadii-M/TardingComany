@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Хранилище TradingCompany" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="Хранилище DbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Account">
     <Key>
       <PropertyRef Name="UserID" />
@@ -90,6 +90,13 @@
     <Property Name="StatusID" Type="int" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
+  <EntityType Name="Privilege">
+    <Key>
+      <PropertyRef Name="PrivilegeID" />
+    </Key>
+    <Property Name="PrivilegeID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="UserInfo">
     <Key>
       <PropertyRef Name="UserID" />
@@ -102,6 +109,14 @@
     <Property Name="BankCardInfoID" Type="bigint" Nullable="false" />
     <Property Name="Gender" Type="bit" Nullable="false" />
     <Property Name="AdressID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserPrivileges">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="PrivilegeID" />
+    </Key>
+    <Property Name="UserID" Type="bigint" Nullable="false" />
+    <Property Name="PrivilegeID" Type="bigint" Nullable="false" />
   </EntityType>
   <Association Name="FK__Adress__CountryI__32E0915F">
     <End Role="Country" Type="Self.Country" Multiplicity="1" />
@@ -223,7 +238,31 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="Хранилище TradingCompanyContainer">
+  <Association Name="FK__UserPrivi__Privi__5B78929E">
+    <End Role="Privilege" Type="Self.Privilege" Multiplicity="1" />
+    <End Role="UserPrivileges" Type="Self.UserPrivileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Privilege">
+        <PropertyRef Name="PrivilegeID" />
+      </Principal>
+      <Dependent Role="UserPrivileges">
+        <PropertyRef Name="PrivilegeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserPrivi__UserI__5A846E65">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="UserPrivileges" Type="Self.UserPrivileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserPrivileges">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище DbModelContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Adress" EntityType="Self.Adress" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Bank" EntityType="Self.Bank" Schema="dbo" store:Type="Tables" />
@@ -233,7 +272,9 @@
     <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Privilege" EntityType="Self.Privilege" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserPrivileges" EntityType="Self.UserPrivileges" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ordered" EntityType="Self.Ordered" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [Ordered].[OrderID] AS [OrderID], 
@@ -280,6 +321,14 @@
     <AssociationSet Name="FK__UserInfo__UserID__35BCFE0A" Association="Self.FK__UserInfo__UserID__35BCFE0A">
       <End Role="Account" EntitySet="Account" />
       <End Role="UserInfo" EntitySet="UserInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserPrivi__Privi__5B78929E" Association="Self.FK__UserPrivi__Privi__5B78929E">
+      <End Role="Privilege" EntitySet="Privilege" />
+      <End Role="UserPrivileges" EntitySet="UserPrivileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserPrivi__UserI__5A846E65" Association="Self.FK__UserPrivi__UserI__5A846E65">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="UserPrivileges" EntitySet="UserPrivileges" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

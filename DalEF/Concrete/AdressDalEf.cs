@@ -21,7 +21,7 @@ namespace DalEF.Concrete
         }
         public AdressDTO CreateAdress(AdressDTO adress)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 Adress add = _mapper.Map<Adress>(adress);
                 e.Adress.Add(add);
@@ -32,7 +32,7 @@ namespace DalEF.Concrete
 
         public bool DeleteAdress(int id)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 var add = e.Adress.SingleOrDefault(a => a.AdressID == id);
                 if (add == null)
@@ -47,7 +47,7 @@ namespace DalEF.Concrete
 
         public AdressDTO GetAdressByID(int id)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 var add = e.Adress.SingleOrDefault(a => a.AdressID == id);
                 if (add == null)
@@ -60,7 +60,7 @@ namespace DalEF.Concrete
 
         public List<AdressDTO> GetAllAdresses()
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 return _mapper.Map<List<AdressDTO>>(e.Adress.ToList());
             }
@@ -68,7 +68,7 @@ namespace DalEF.Concrete
 
         public AdressDTO UpdateAdress(AdressDTO adress)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 e.Adress.AddOrUpdate(_mapper.Map<Adress>(adress));
                 e.SaveChanges();

@@ -10,6 +10,8 @@ namespace DalEF.Interfaces
     public interface IOrderedDal
     {
         OrderedDTO GetOrderedByID(int id);
+
+        List<OrderedDTO> GetOrderedListByID(int id);
         List<OrderedDTO> GetAllOrdered();
         OrderedDTO CreateOrdered(OrderedDTO order);
         OrderedDTO UpdateOrdered(OrderedDTO order);

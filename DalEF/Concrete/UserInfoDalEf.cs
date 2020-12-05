@@ -20,7 +20,7 @@ namespace DalEF.Concrete
 
         public UserInfoDTO CreateUserInfo(UserInfoDTO info)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 UserInfo user = _mapper.Map<UserInfo>(info);
                 e.UserInfo.Add(user);
@@ -31,7 +31,7 @@ namespace DalEF.Concrete
 
         public bool DeleteUserInfoById(int id)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 UserInfo user = e.UserInfo.SingleOrDefault(p => p.UserID == id);
                 if (user == null)
@@ -46,7 +46,7 @@ namespace DalEF.Concrete
 
         public List<UserInfoDTO> GetAllUserInfo()
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 return _mapper.Map<List<UserInfoDTO>>(e.UserInfo.ToList());
 
@@ -55,7 +55,7 @@ namespace DalEF.Concrete
 
         public UserInfoDTO GetUserInfoById(int id)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 return _mapper.Map<UserInfoDTO>(e.UserInfo.SingleOrDefault(p => p.UserID == id));
             }
@@ -63,7 +63,7 @@ namespace DalEF.Concrete
 
         public UserInfoDTO UpdateUserInfo(UserInfoDTO info)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 e.UserInfo.AddOrUpdate(_mapper.Map<UserInfo>(info));
                 e.SaveChanges();

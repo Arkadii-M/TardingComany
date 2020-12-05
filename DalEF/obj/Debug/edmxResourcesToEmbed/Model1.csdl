@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="TradingCompany" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="DbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Account">
     <Key>
       <PropertyRef Name="UserID" />
@@ -10,12 +10,13 @@
     <Property Name="Salt" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Order" Relationship="Self.FK__Order__UserID__412EB0B6" FromRole="Account" ToRole="Order" />
     <NavigationProperty Name="UserInfo" Relationship="Self.FK__UserInfo__UserID__35BCFE0A" FromRole="Account" ToRole="UserInfo" />
+    <NavigationProperty Name="Privilege" Relationship="Self.UserPrivileges" FromRole="Account" ToRole="Privilege" />
   </EntityType>
   <EntityType Name="Adress">
     <Key>
       <PropertyRef Name="AdressID" />
     </Key>
-    <Property Name="AdressID" Type="Int64" Nullable="false" />
+    <Property Name="AdressID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CountryID" Type="Int32" Nullable="false" />
     <Property Name="City" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Street" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
@@ -39,7 +40,7 @@
     <Property Name="BankID" Type="Int32" />
     <Property Name="CardNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="CVV" Type="Int32" Nullable="false" />
-    <Property Name="ExtendDate" Type="DateTime" annotation:StoreGeneratedPattern="None" Nullable="false" Precision="7" />
+    <Property Name="ExtendDate" Type="DateTime" Nullable="false" Precision="7" />
     <NavigationProperty Name="Bank" Relationship="Self.FK__BankCardI__BankI__2B3F6F97" FromRole="BankCardInfo" ToRole="Bank" />
     <NavigationProperty Name="UserInfo" Relationship="Self.FK__UserInfo__BankCa__36B12243" FromRole="BankCardInfo" ToRole="UserInfo" />
   </EntityType>
@@ -55,7 +56,7 @@
     <Key>
       <PropertyRef Name="CountryID" />
     </Key>
-    <Property Name="CountryID" Type="Int32" Nullable="false" />
+    <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Adress" Relationship="Self.FK__Adress__CountryI__32E0915F" FromRole="Country" ToRole="Adress" />
   </EntityType>
@@ -63,7 +64,7 @@
     <Key>
       <PropertyRef Name="ItemID" />
     </Key>
-    <Property Name="ItemID" Type="Int64" Nullable="false" />
+    <Property Name="ItemID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ItemTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="CategoryID" Type="Int64" Nullable="false" />
     <Property Name="Price" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
@@ -75,9 +76,9 @@
     <Key>
       <PropertyRef Name="OrderID" />
     </Key>
-    <Property Name="OrderID" Type="Int64" Nullable="false" />
+    <Property Name="OrderID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Ordernumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="None" Precision="7" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
     <Property Name="UserID" Type="Int64" Nullable="false" />
     <Property Name="StatusID" Type="Int32" Nullable="false" />
     <Property Name="Comment" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
@@ -93,11 +94,19 @@
     <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Order" Relationship="Self.FK__Order__StatusID__4222D4EF" FromRole="OrderStatus" ToRole="Order" />
   </EntityType>
+  <EntityType Name="Privilege">
+    <Key>
+      <PropertyRef Name="PrivilegeID" />
+    </Key>
+    <Property Name="PrivilegeID" Type="Int64" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Account" Relationship="Self.UserPrivileges" FromRole="Privilege" ToRole="Account" />
+  </EntityType>
   <EntityType Name="UserInfo">
     <Key>
       <PropertyRef Name="UserID" />
     </Key>
-    <Property Name="UserID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int64" Nullable="false" />
     <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="MobilePhone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -241,7 +250,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="Traiding_CompanyEntities2" annotation:LazyLoadingEnabled="true">
+  <Association Name="UserPrivileges">
+    <End Role="Privilege" Type="Self.Privilege" Multiplicity="*" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="Entity" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Account" EntityType="Self.Account" />
     <EntitySet Name="Adress" EntityType="Self.Adress" />
     <EntitySet Name="Bank" EntityType="Self.Bank" />
@@ -251,6 +264,7 @@
     <EntitySet Name="Item" EntityType="Self.Item" />
     <EntitySet Name="Order" EntityType="Self.Order" />
     <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" />
+    <EntitySet Name="Privilege" EntityType="Self.Privilege" />
     <EntitySet Name="UserInfo" EntityType="Self.UserInfo" />
     <EntitySet Name="Ordered" EntityType="Self.Ordered" />
     <AssociationSet Name="FK__Order__UserID__412EB0B6" Association="Self.FK__Order__UserID__412EB0B6">
@@ -292,6 +306,10 @@
     <AssociationSet Name="FK__Ordered__OrderID__440B1D61" Association="Self.FK__Ordered__OrderID__440B1D61">
       <End Role="Order" EntitySet="Order" />
       <End Role="Ordered" EntitySet="Ordered" />
+    </AssociationSet>
+    <AssociationSet Name="UserPrivileges" Association="Self.UserPrivileges">
+      <End Role="Privilege" EntitySet="Privilege" />
+      <End Role="Account" EntitySet="Account" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

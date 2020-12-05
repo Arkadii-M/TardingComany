@@ -1,0 +1,6 @@
+C:\Users\Programmer\source\repos\Trading_Company\Trading_Company\bin\Debug\Trading_Company.dll
+C:\Users\Programmer\source\repos\Trading_Company\Trading_Company\bin\Debug\Trading_Company.pdb
+C:\Users\Programmer\source\repos\Trading_Company\Trading_Company\obj\Debug\ConsoleApplication.csprojAssemblyReference.cache
+C:\Users\Programmer\source\repos\Trading_Company\Trading_Company\obj\Debug\ConsoleApplication.csproj.CoreCompileInputs.cache
+C:\Users\Programmer\source\repos\Trading_Company\Trading_Company\obj\Debug\Trading_Company.dll
+C:\Users\Programmer\source\repos\Trading_Company\Trading_Company\obj\Debug\Trading_Company.pdb

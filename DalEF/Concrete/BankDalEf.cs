@@ -19,7 +19,7 @@ namespace DalEF.Concrete
         }
         public BankDTO CreateBank(BankDTO bank)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 Bank to_add = _mapper.Map<Bank>(bank);
                 e.Bank.Add(to_add);
@@ -30,7 +30,7 @@ namespace DalEF.Concrete
 
         public bool DeleteBankById(int id)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 var bank = e.Bank.SingleOrDefault(a => a.BankID == id);
                 if (bank == null)
@@ -45,7 +45,7 @@ namespace DalEF.Concrete
 
         public List<BankDTO> GetAllBanks()
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 return _mapper.Map<List<BankDTO>>(e.Bank.ToList());
             }
@@ -53,7 +53,7 @@ namespace DalEF.Concrete
 
         public BankDTO GetBankById(int id)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 var bank = e.Bank.SingleOrDefault(a => a.BankID == id);
                 if (bank == null)
@@ -66,7 +66,7 @@ namespace DalEF.Concrete
 
         public BankDTO UpdateBank(BankDTO bank)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 e.Bank.AddOrUpdate(_mapper.Map<Bank>(bank));
                 e.SaveChanges();

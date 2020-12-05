@@ -17,6 +17,16 @@ namespace BusinessLogic.Concrete
             _itemDal = itemDal;
         }
 
+        public ItemDTO AddItem(ItemDTO item)
+        {
+            return this._itemDal.CreateItem(item);
+        }
+
+        public bool DeleteItemById(int id)
+        {
+            return this._itemDal.DeleteItem(id);
+        }
+
         public List<ItemDTO> GetAllItems()
         {
             return this._itemDal.GetAllItems();
@@ -25,6 +35,11 @@ namespace BusinessLogic.Concrete
         public ItemDTO GetItemById(int id)
         {
             return this._itemDal.GetItemByID(id);
+        }
+
+        public ItemDTO UpdateItem(ItemDTO item)
+        {
+            return this._itemDal.UpdateItem(item);
         }
     }
 }

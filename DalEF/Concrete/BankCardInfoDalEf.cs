@@ -20,7 +20,7 @@ namespace DalEF.Concrete
         public BankCardInfoDTO CreateBankCardInfo(BankCardInfoDTO card)
         {
 
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 BankCardInfo info = _mapper.Map<BankCardInfo>(card);
                 e.BankCardInfo.Add(info);
@@ -32,7 +32,7 @@ namespace DalEF.Concrete
         public bool DeleteBankCardInfoById(int id)
         {
 
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 var info  = e.BankCardInfo.SingleOrDefault(a => a.BankCardInfoID == id);
                 if (info == null)
@@ -47,7 +47,7 @@ namespace DalEF.Concrete
 
         public List<BankCardInfoDTO> GetAllBankCardInfo()
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 return _mapper.Map<List<BankCardInfoDTO>>(e.BankCardInfo);
             }
@@ -55,7 +55,7 @@ namespace DalEF.Concrete
 
         public BankCardInfoDTO GetBankCardInfoById(int id)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 var info = e.BankCardInfo.SingleOrDefault(a => a.BankCardInfoID == id);
                 if (info == null)
@@ -68,7 +68,7 @@ namespace DalEF.Concrete
 
         public BankCardInfoDTO UpdateBankCardInfo(BankCardInfoDTO card)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 e.BankCardInfo.AddOrUpdate(_mapper.Map<BankCardInfo>(card));
                 var res = e.BankCardInfo.Single(p => p.BankCardInfoID == card.BankCardInfoID);

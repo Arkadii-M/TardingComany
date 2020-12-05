@@ -1,0 +1,11 @@
+`2020-12-05 20:46:18.9030`Info`TradingCompanyWF.Program`User open register page
+`2020-12-05 20:46:57.2377`Info`TradingCompanyWF.Program`User open register page
+`2020-12-05 20:48:42.2809`Info`TradingCompanyWF.Program`User open register page
+`2020-12-05 20:49:23.8561`Info`TradingCompanyWF.Program`User open register page
+`2020-12-05 21:00:48.8510`Info`TradingCompanyWF.Program`User open register page
+`2020-12-05 21:12:40.7799`Info`TradingCompanyWF.Program`User open register page
+`2020-12-05 21:14:47.9816`Info`TradingCompanyWF.Program`User use login which already exist
+`2020-12-05 21:16:57.3628`Info`TradingCompanyWF.Program`New user registered. Login: sha512_64
+`2020-12-05 21:17:02.8288`Info`TradingCompanyWF.Program`Registration DialogResult OK
+`2020-12-05 21:17:24.5784`Info`TradingCompanyWF.Program`User Logined. Username: sha512_64
+`2020-12-05 21:17:28.3540`Info`TradingCompanyWF.Program`User sha512_64 open Catalog

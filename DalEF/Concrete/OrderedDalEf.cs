@@ -20,7 +20,7 @@ namespace DalEF.Concrete
 
         public OrderedDTO CreateOrdered(OrderedDTO order)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 Ordered o = _mapper.Map<Ordered>(order);
                 e.Ordered.Add(o);
@@ -31,7 +31,7 @@ namespace DalEF.Concrete
 
         public bool DeleteOrdered(int id)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 var o = e.Ordered.SingleOrDefault(a => a.OrderID == id);
                 if (o == null)
@@ -46,7 +46,7 @@ namespace DalEF.Concrete
 
         public List<OrderedDTO> GetAllOrdered()
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 return _mapper.Map<List<OrderedDTO>>(e.Ordered.ToList());
             }
@@ -54,7 +54,7 @@ namespace DalEF.Concrete
 
         public OrderedDTO GetOrderedByID(int id)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 var o = e.Ordered.SingleOrDefault(a => a.OrderID == id);
                 if (o == null)
@@ -65,9 +65,24 @@ namespace DalEF.Concrete
             }
         }
 
+        public List<OrderedDTO> GetOrderedListByID(int id)
+        {
+            using (var e = new EntityTC())
+            {
+                var ordered = e.Ordered.Where(o => o.OrderID == id);
+                var to_ret = new List<OrderedDTO>();
+
+                foreach(var ord in ordered)
+                {
+                    to_ret.Add(_mapper.Map<OrderedDTO>(ord));
+                }
+                return to_ret;
+            }
+        }
+
         public OrderedDTO UpdateOrdered(OrderedDTO order)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 e.Ordered.AddOrUpdate(_mapper.Map<Ordered>(order));
                 e.SaveChanges();

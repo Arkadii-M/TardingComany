@@ -9,6 +9,7 @@ using DalEF.Profiles;
 using AutoMapper;
 using System.Data.Entity.Migrations;
 using System.Security.Cryptography;
+using System.Data.Entity;
 
 namespace DalEF.Concrete
 {
@@ -21,7 +22,7 @@ namespace DalEF.Concrete
         }
         public AccountDTO CreateAccount(AccountDTO Account)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 if(e.Account.Any(a => a.UserLogin == Account.UserLogin))
                 {
@@ -35,7 +36,7 @@ namespace DalEF.Concrete
         }
         public AccountDTO CreateAccount(string username, string password)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 if (e.Account.Any(a => a.UserLogin == username))
                 {
@@ -56,7 +57,7 @@ namespace DalEF.Concrete
 
          public bool DeleteAccount(int id)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 var acc = e.Account.SingleOrDefault(a => a.UserID == id);
                 if(acc == null)
@@ -71,7 +72,7 @@ namespace DalEF.Concrete
 
         public AccountDTO GetAccountByID(int id)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 var acc = e.Account.SingleOrDefault(a => a.UserID == id);
                 if (acc == null)
@@ -83,20 +84,15 @@ namespace DalEF.Concrete
         }
         public AccountDTO GetAccountByLogin(string login)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
-                var acc = e.Account.SingleOrDefault(a => a.UserLogin == login);
-                if (acc == null)
-                {
-                    return null;
-                }
-                return _mapper.Map<AccountDTO>(acc);
+                return _mapper.Map<AccountDTO>(e.Account.SingleOrDefault(l => l.UserLogin == login));
             }
         }
 
         public List<AccountDTO> GetAllAccounts()
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 return _mapper.Map<List<AccountDTO>>(e.Account.ToList());
             }
@@ -104,7 +100,7 @@ namespace DalEF.Concrete
 
         public AccountDTO UpdateAccount(AccountDTO Account)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 e.Account.AddOrUpdate(_mapper.Map<Account>(Account));
                 e.SaveChanges();
@@ -115,7 +111,7 @@ namespace DalEF.Concrete
 
         public bool Login(string username, string password)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 var account = e.Account.SingleOrDefault(acc => acc.UserLogin == username);
 

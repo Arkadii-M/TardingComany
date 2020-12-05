@@ -19,7 +19,7 @@ namespace DalEF.Concrete
         }
         public OrderStatusDTO CreateOrderStatus(OrderStatusDTO status)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 OrderStatus o = _mapper.Map<OrderStatus>(status);
                 e.OrderStatus.Add(o);
@@ -30,7 +30,7 @@ namespace DalEF.Concrete
 
         public bool DeleteOrderStatus(int id)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 var o = e.OrderStatus.SingleOrDefault(a => a.StatusID == id);
                 if (o == null)
@@ -45,7 +45,7 @@ namespace DalEF.Concrete
 
         public List<OrderStatusDTO> GetAllOrderStatuses()
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 return _mapper.Map<List<OrderStatusDTO>>(e.OrderStatus.ToList());
             }
@@ -53,7 +53,7 @@ namespace DalEF.Concrete
 
         public OrderStatusDTO GetOrderStatusByID(int id)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 var o = e.OrderStatus.SingleOrDefault(a => a.StatusID == id);
                 if (o == null)
@@ -66,7 +66,7 @@ namespace DalEF.Concrete
 
         public OrderStatusDTO UpdateOrderStatus(OrderStatusDTO status)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 e.OrderStatus.AddOrUpdate(_mapper.Map<OrderStatus>(status));
                 e.SaveChanges();

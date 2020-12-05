@@ -12,7 +12,8 @@ namespace DalEF.Profiles
     {
         public AccountProfile()
         {
-            CreateMap<Account, AccountDTO>().ReverseMap();
+            CreateMap<Account, AccountDTO>()
+                .ForMember(dest => dest.Privileges, scr => scr.MapFrom(p => p.Privilege.ToList()));
             
         }
     }

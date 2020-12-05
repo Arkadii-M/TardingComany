@@ -20,7 +20,7 @@ namespace DalEF.Concrete
 
         public OrderDTO CreateOrder(OrderDTO order)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 Order o = _mapper.Map<Order>(order);
                 e.Order.Add(o);
@@ -31,7 +31,7 @@ namespace DalEF.Concrete
 
         public bool DeleteOrder(int id)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 var o = e.Order.SingleOrDefault(a => a.OrderID == id);
                 if (o == null)
@@ -46,7 +46,7 @@ namespace DalEF.Concrete
 
         public List<OrderDTO> GetAllOrders()
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 return _mapper.Map<List<OrderDTO>>(e.Order.ToList());
             }
@@ -54,7 +54,7 @@ namespace DalEF.Concrete
 
         public OrderDTO GetOrderByID(int id)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 var o = e.Order.SingleOrDefault(a => a.OrderID == id);
                 if (o == null)
@@ -67,7 +67,7 @@ namespace DalEF.Concrete
 
         public OrderDTO UpdateOrder(OrderDTO order)
         {
-            using (var e = new Traiding_CompanyEntities2())
+            using (var e = new EntityTC())
             {
                 e.Order.AddOrUpdate(_mapper.Map<Order>(order));
                 e.SaveChanges();

@@ -17,5 +17,7 @@ namespace DTO
         public Byte[] UserPassword { get; set; }
         [Required]
         public string Salt { get; set; }
+
+        public List<PrivilegeDTO> Privileges {get;set;}
     }
 }

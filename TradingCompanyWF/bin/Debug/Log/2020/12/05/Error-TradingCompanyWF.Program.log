@@ -1,0 +1,14 @@
+`2020-12-05 21:02:08.6847`Error`TradingCompanyWF.Program`Error mapping types.
+
+Mapping types:
+BankCardInfoDTO -> BankCardInfo
+DTO.BankCardInfoDTO -> DalEF.BankCardInfo
+
+Type Map configuration:
+BankCardInfoDTO -> BankCardInfo
+DTO.BankCardInfoDTO -> DalEF.BankCardInfo
+
+Destination Member:
+ExtendDate
+
+`2020-12-05 21:16:03.9040`Error`TradingCompanyWF.Program`Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
